@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8"/>
         <title> Register </title>
         <link rel="stylesheet" href="style.css">
 
@@ -13,31 +14,20 @@
     if (isset($_REQUEST['username'])) {
 
         // removes backslashes
-        $firstname = stripslashes($_REQUEST['firstname']);
+        $username = stripslashes($_REQUEST['username']);
 
         //escapes special characters in a string
-        $firstname = mysqli_real_escape_string($connection, $firstname);
-
-        $lastname = stripslashes($_REQUEST['lastname']);
-        $lastname = mysqli_real_escape_string($connection, $lastname);
-
-        $username = stripslashes($_REQUEST['username']);
         $username = mysqli_real_escape_string($connection, $username);
 
         $email    = stripslashes($_REQUEST['email']);
         $email    = mysqli_real_escape_string($connection, $email);
 
-        $profession = stripslashes($_REQUEST['profession']);
-        $profession = mysqli_real_escape_string($connection, $profession);
-
         $password = stripslashes($_REQUEST['password']);
         $password = mysqli_real_escape_string($connection, $password);
 
-        $confirmPassword = stripslashes($_REQUEST['confirmPassword']);
-        $confirmPassword = mysqli_real_escape_string($connection, $confirmPassword);
 
-        $query    = "INSERT into `users` (firstname, lastname, username, profession, email, password, confirmPassword)
-                     VALUES ('$firstname', '$lastname','$username', '$profession', '$email', '" . md5($password) . "', '$confirmPassword)";
+        $query    = "INSERT into `users` (username, email, password, create_datetime)
+                     VALUES ('$username', '" . md5($password) . "', '$email', '$create_datetime')";
         
         $result   = mysqli_query($connection, $query);
         if ($result) {
@@ -53,41 +43,25 @@
         }
     } else {}
     ?>
-        <div class="register-page"></class>
-                    <h1> Register </h1>
-                    <h4> It only takes a minute. </h4>
-                    <form action="db_connection.php" method="post">
 
-                        <! textbox for first name>
-                        <label for="firstname" > First Name </label>
-                        <input type="text" placeholder="Eg: John" id="firstname" name="firstname">
+            <form action="db_connection.php" method="post">
+                <h1 class="register-page">Register</h1>
 
-                        <! textbox for last name>
-                        <label for="lastName"> Last Name </label>
-                        <input type="text" placeholder="Eg: Wick" id="lastname" name="lastname">
+                    <! textbox for username>
+                    <label for="username" > User Name </label>
+                    <input type="text" class="login-input" placeholder="Eg: John" id="username" name="username">
 
-                        <! textbox for username>
-                        <label for="username" > User Name </label>
-                        <input type="text" placeholder="Eg: Johnwick07" id="username" name="username">
-                        
-                        <! textbox for Profession>
-                        <label for="profession"> Profession </label>
-                        <input type="text" placeholder="Eg: bartender" id="Profession" name="Profession">
+                    <! textbox for email>
+                    <label for="email"> Email </label>
+                    <input type="email" class="login-input" placeholder="Eg: john07@gmail.com" id="email" name="email">
 
-                        <! textbox for email>
-                        <label for="email"> Email </label>
-                        <input type="email" placeholder="Eg: johnwick@gmail.com" id="email" name="email">
+                    <! textbox for password>
+                    <label for="password"> Password </label>
+                    <input type="password" class="login-input" placeholder="" id="password" name="password">
 
-                        <! textbox for password>
-                        <label for="password"> Password </label>
-                        <input type="password" placeholder="" id="password" name="password">
-
-                        <! textbox for  confirming password>
-                        <label for="confirmPassword"> Confirm Password </label>
-                        <input type="password" placeholder="" id="confirmPassword" name="confirmPassword">
-
-                        <! button to submit registration information>
-                        <input type="submit" value="Submit">
+                    <! button to submit registration information>
+                    <input type="submit" name="submit" value="Register" class="login-button">
+                    <p class="link">Already have an account? <a href="LoginPage.php">Login here</a></p>
 
                     </form>
         </div>
