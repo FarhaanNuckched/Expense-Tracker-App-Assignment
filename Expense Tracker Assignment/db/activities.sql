@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2021 at 02:01 PM
+-- Generation Time: Dec 26, 2021 at 05:02 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -52,7 +52,7 @@ INSERT INTO `activities` (`activity_id`, `date`, `type`, `amount`, `user_id`, `c
 (9, '2021-12-16', 'expense', '96', 1, 'Rent'),
 (10, '2021-12-17', 'expense', '322', 1, 'Miscellaneous'),
 (11, '2021-12-19', 'expense', '9728', 1, 'Food'),
-(12, '2021-12-19', '', '7741', 1, 'Clothing');
+(12, '2021-12-19', 'expense', '7741', 1, 'Clothing');
 
 --
 -- Indexes for dumped tables
